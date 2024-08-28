@@ -1,0 +1,5 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader"
+                access="global" controller="SendInvoiceToCustomer">	
+     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+      <h4 style="font-size:20px; text-align: center; color: #4CAF50;">Send Invoice to Customer</h4>
+</aura:component>

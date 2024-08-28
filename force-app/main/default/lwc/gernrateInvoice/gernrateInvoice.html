@@ -1,0 +1,80 @@
+<template>
+
+    <lightning-card>
+        <div class="slds-m-around_large">
+            
+             <div if:true={isLoaded} class="slds-is-relative">
+                <lightning-spinner
+                    alternative-text="Loading..." variant="brand">
+                </lightning-spinner>
+            </div>
+        </div>
+        <h3 slot="title">
+            <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+            <span style="color: rgba(65, 148, 249, 1);"><b>Invoice Details</b></span>
+        </h3>
+        <div slot="footer">
+            <div class="slds-align_absolute-center">
+                <lightning-button class="slds-m-top_small" variant="brand" onclick={save}  type="submit" label="Save"></lightning-button>
+                <div class="slds-p-left_medium"></div>
+                <lightning-button class="slds-m-top_small" type="cancel" onclick={cancel} label="Cancel"></lightning-button>
+    
+            </div>
+        </div>
+        <div class="slds-m-around slds-p-left_small slds-p-right_small">
+            <lightning-input label="Invoice Date" value={invoiceDate} onchange={handeleChange} type="Date" ></lightning-input>
+            <lightning-input label="Invoice Number" value={invoiceNumber} type="text" disabled="true" ></lightning-input>
+            <lightning-input label="Product" value={product} onchange={handeleChange} type="text" disabled="true" ></lightning-input>
+            <lightning-input label="Amount" value={amount} onchange={handeleChange} type="currency" disabled="true"></lightning-input>
+            <lightning-input label="Subscription Start"  value={subStartDate} onchange={handeleChange} type="Date" disabled="true"></lightning-input>
+            <lightning-input label="Subscription End" value={subEndDate} onchange={handeleChange} type="Date" disabled="true"></lightning-input>
+            <lightning-textarea  label="Invoice Note" value={inVoiceNote}  onchange={handeleChange} ></lightning-textarea>
+            <lightning-input label="Shipping Entity Name" value={shippingEntityName} onchange={handeleChange} type="text" ></lightning-input>
+            <lightning-input label="Billing Entity Name" value={billingEntityName} onchange={handeleChange} type="text" ></lightning-input>
+            <lightning-input-address
+                address-label="Shipping Address"
+                street-label="shippingStreet"
+                city-label="shippingCity"
+                province-label="Shipping State"
+                country-label="shipping Country"
+                postal-code-label="Shipping PostalCode"
+                street={shippingStreet}
+                city={shippingCity}
+                country={updatedShipping}
+                province={shippingState}
+                postal-code={shippingCode}
+                field-level-help="Help Text for inputAddress field" onchange={addressEventHandler} data-type="Shipping"></lightning-input-address>
+            
+                <lightning-input-address
+                address-label="Billing Address"
+                street-label="Billing Street"
+                city-label="Billing City"
+                province-label="Billing State"
+                country-label="Billing Country"
+                postal-code-label="Billing PostalCode"
+                street={billingStreet}
+                city={billingCity}
+                country={bilingCountry}
+                province={billingState}
+                postal-code={billingCode}
+                field-level-help="Help Text for inputAddress field" onchange={addressEventHandler} data-type="Billing"></lightning-input-address>
+        </div>
+        
+    </lightning-card>
+
+    <!--lightning-record-edit-form record-id={recordId} object-api-name="Job__c"
+            onsuccess={handleSuccess} onsubmit ={handleSubmit}>
+        <lightning-messages>
+        </lightning-messages>
+        <lightning-output-field field-name="Subscription_End__c">
+        </lightning-output-field>
+        <lightning-input-field field-name="Subscription_Start__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Product__c">
+        </lightning-input-field>
+        <lightning-input-field field-name="Invoiced_Amount__c">
+        </lightning-input-field>
+        <lightning-button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update">
+        </lightning-button>
+    </lightning-record-edit-form-->
+</template>

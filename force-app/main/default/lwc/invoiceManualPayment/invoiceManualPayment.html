@@ -1,0 +1,71 @@
+<template>
+    <lightning-quick-action-panel header="Manual Payment">
+        <!--h3 slot="title">
+            <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+            <span style="color: rgba(65, 148, 249, 1);"><b>Make Manual Paymetn</b></span>
+        </!--h3-->
+       
+        <div class="slds-m-around slds-p-left_small slds-p-right_small">
+            <lightning-combobox
+                name="progress"
+                label="Payment Status"
+                value={paymentStatus}
+                placeholder="Select Payment Mode"
+                options={paymentOptio}
+                onchange={handeleChange} ></lightning-combobox>
+            <!-- <lightning-input label="Payment Status" value={paymentStatus} type="text" disabled="true"></lightning-input> -->
+            <lightning-combobox
+                name="progress"
+                label="Payment Mode Type"
+                value={paymentModeType}
+                placeholder="Select Payment Mode"
+                options={options}
+                onchange={handeleChange} ></lightning-combobox>
+
+            <lightning-input label="Date" value={paymentDate}  onchange={handeleChange}  type="Date"></lightning-input>
+            <lightning-input label="Paid Amount" value={reciviedAmount}  onchange={handeleChange}  type="number" ></lightning-input>
+            <lightning-textarea  label="Payment Notes" value={paymentNotes}  onchange={handeleChange} > </lightning-textarea>  
+            <template if:true={payment}>
+                <lightning-input label="Payment Check/Wire No" value={paymentCheckWireNo}  onchange={handeleChange}  type="text"></lightning-input>
+            </template>
+            
+            <template if:true={firstPayment}>
+                <lightning-input label="First Payment" value={firstPaymentAmount}  onchange={handeleChange}  type="number"></lightning-input>
+                <lightning-input label="First Payment Date" value={firstPaymentDate}  onchange={handeleChange}  type="Date"></lightning-input>
+                <lightning-input label="First Payment Check No" value={firstPaymentCheckNo}  onchange={handeleChange}  type="text"></lightning-input>
+            </template>
+
+            <template if:true={SecondPayment}>
+                <lightning-input label="Second Payment" value={secondPaymentAmount}  onchange={handeleChange}  type="number"></lightning-input>
+                <lightning-input label="Second Payment Date" value={secondPaymentDate}  onchange={handeleChange}  type="Date"></lightning-input>
+                <lightning-input label="Second Payment Check No" value={secondPaymentCheck}  onchange={handeleChange}  type="text"></lightning-input>
+            </template>
+
+            <template if:true={ThirdPayment}>
+                <lightning-input label="Third Payment" value={thirdPaymentAmount}  onchange={handeleChange}  type="number"></lightning-input>
+                <lightning-input label="Third Payment Date" value={thirdPaymentDate}  onchange={handeleChange}  type="Date"></lightning-input>
+                <lightning-input label="Third Payment Check No" value={thirdPaymentCheck}  onchange={handeleChange}  type="text"></lightning-input>
+            </template>
+           
+
+            <!-- <lightning-input label="SecondPayment" value={secondPaymentAmount}  onchange={handeleChange}  type="number"></lightning-input>
+            <lightning-input label="ThirdPayment" value={thirdPaymentAmount}  onchange={handeleChange}  type="number"></lightning-input> -->
+
+            <div slot="footer" class="slds-align_absolute-center slds-m-top_x-small">
+                <lightning-button
+                    onclick={cancel}
+                    variant="neutral"
+                    label="Cancel"
+                ></lightning-button>
+                <lightning-button
+                     onclick={save}
+                    variant="brand"
+                    label="Save"
+                    class="slds-m-left_x-small"
+                ></lightning-button>
+            </div>
+        </div>
+        
+    </lightning-quick-action-panel>
+    
+</template>

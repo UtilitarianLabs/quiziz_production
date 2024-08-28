@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" controller="opportunityTrigger_Helper" >
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:handler name="init" action="{!c.init}" value="{!this}" />
+    <div class="">Quote creation completed</div>
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" controller="OpportunityInvoiceCreation" >
+	<aura:attribute name="recordId" type="Id"></aura:attribute>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+</aura:component>

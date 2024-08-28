@@ -1,0 +1,101 @@
+<apex:page renderAs="pdf" showHeader="false" standardController="Credit_Note__c" extensions="CreditNotePDFController" title="Invoice PDF">
+    
+    <html>
+        <body>
+            <div style="display: inline-block;width: 100%;margin: 1rem;padding: 2rem 2rem;font-family: Noto Sans,Helvetica,sans-serif;">
+                <div style="display: inline-block;padding: 1rem 1rem;vertical-align: middle;float:left;width:50%">
+                    <apex:image value="{!$Resource.Quizziz_logo}" style="height:30px;" /><br/>
+                    <div ><p class='organization'><strong>Quizizz Inc</strong></p></div>
+                    <div >
+                        DEPT LA 22192<br/>
+                        Pasadena, California 91185-2192<br/> 
+                        United States
+                        <br/>
+                    </div>
+                </div>
+                <div style="display: inline-block;padding: 1rem 1rem;vertical-align: middle;">
+                    <span style="font-size:20px;margin-top:15px;color: #471742;">
+                        <strong >CREDIT NOTE</strong>
+                    </span><br/>
+                    <br/>
+                    <span style="font-size:14px;">Credit Note #</span>   <b style="font-size:12px;">&nbsp; {!CreditNoteName}</b>
+                    <br/> <span style="font-size:14px;">Ref Invoice #</span><b style="font-size:12px;">&nbsp;   {!invoiceName}</b>
+                    <br/> <span style="font-size:14px;">Date</span><b style="font-size:12px;">&nbsp;   {!invoiceDate}</b>
+                    <br/> <span style="font-size:14px;">Amount</span><b style="font-size:12px;">&nbsp;   ${!creditAmount} (USD)</b>
+                    <br/> <span style="font-size:14px;">Reason Code</span><b style="font-size:12px;">&nbsp;   {!ReasonCode}</b>
+                    <br/> <span style="font-size:14px;">Customer ID</span> <b style="font-size:12px;">&nbsp;   {!oppDetails.Account.Id}</b>
+                    <br/><span style="color:grey;font-size:18px;">ADJUSTED</span>
+                </div>
+            </div>
+            <div style="display: inline-block;width: 100%;margin: 1rem;padding: 2rem 2rem;padding-top:10px;font-family: Noto Sans,Helvetica,sans-serif;">
+                <div style="display: inline-block;padding: 2rem 2rem;vertical-align: middle;width:50%">
+                  
+                        <strong style="font-size:14px;">{!invo.Invoice__r.Billing_Entity_Name__c}</strong><br/>
+                        <apex:outputText style="font-size:14px;" value="{!invo.Invoice__r.Billing_Street__c}" /><br />
+                        <apex:outputText style="font-size:14px;" value="{!invo.Invoice__r.Billing_City__c}" />&nbsp;
+                        <apex:outputText style="font-size:14px;" value="{!invo.Invoice__r.Billing_State__c}" />&nbsp;
+                        <apex:outputText style="font-size:14px;" value="{!invo.Invoice__r.Billing_Postal_Code__c}" />&nbsp;<br />
+                        <apex:outputText style="font-size:14px;" value="{!invo.Invoice__r.Billing_Country__c}" />&nbsp;<br />
+                        
+                   
+                </div>
+                <div style="display: inline-block;padding: 2rem 2rem;vertical-align: middle;">
+                    <strong style="font-size:14px;">{!invo.Invoice__r.Shipping_Entity_name__c}</strong><br/>
+                    <apex:outputText style="font-size:14px;" value="{!invo.Invoice__r.Shipping_Street__c}" /><br />
+                    <apex:outputText style="font-size:14px;" value="{!invo.Invoice__r.Shipping_City__c}" />&nbsp;
+                    <apex:outputText style="font-size:14px;" value="{!invo.Invoice__r.Shipping_State__c}" />&nbsp;
+                    <apex:outputText style="font-size:14px;" value="{!invo.Invoice__r.Shipping_Postal_Code__c}" />&nbsp;<br />
+                    <apex:outputText style="font-size:14px;" value="{!invo.Invoice__r.Shipping_Country__c}" />&nbsp;<br />
+                    
+                </div>
+            </div>
+            
+            <br/>
+            <hr style="border-top: 1px;"/>
+            <table style="width:100%;font-family: Noto Sans,Helvetica,sans-serif;">
+                <tr colspan="2" >
+                    <td style="text-align:left;font-size:12px;">Description</td>
+                    <td style="text-align:right;font-size:12px;">Amount (USD)</td>
+                </tr>
+            </table>
+            <hr style="border-top: 1px;"/>
+            <table style="width:100%;font-family: Noto Sans,Helvetica,sans-serif;">
+                <tr colspan="2">
+                    <td style="text-align:left;font-weight:bold;">
+                        <p style="text-align:left;font-size:14px;margin-left:50px;"> Quizizz Sitewide Plan</p>
+                    </td>
+                    <td style="font-weight:bold;text-align:right;"> 
+                        
+                        <p style="text-align:right;font-size:14px;">$ <apex:outputText value="{0, number, ###,###,###,###.00}" id="myNumberDisplay" >
+                            <apex:param value="{!invoicedAmount}"/>
+                            </apex:outputText></p>
+                    </td>
+                </tr> 
+                <Span style="font-size: x-small;">{!generalDescription}</Span>
+                <hr style="border-top: 1px;"/>
+            </table>
+            <div style="text-align:right;font-size:14px;font-family: Noto Sans,Helvetica,sans-serif;">
+                <b > Total $
+                    <apex:outputText value="{0, number, ###,###,###,###.00}" id="myNumberDisplay1" label="test">
+                        <apex:param value="{!creditAmount}"/>
+                    </apex:outputText></b>
+                <hr style="border-top: 1px;"/>
+            </div>
+            <div style="text-align:right;font-family: Noto Sans,Helvetica,sans-serif;">
+                <b >Allocations ($<apex:outputText value="{0, number, ###,###,###,###.00}" label="test">
+                    <apex:param value="{!creditAmount}"/>
+                    </apex:outputText>)</b><hr style="border-top: 1px;"/>
+            </div>
+            <div style="text-align:right;font-family: Noto Sans,Helvetica,sans-serif;">
+                <b>Amount Available (USD) $0.00</b>
+            </div>
+            <div style="font-family: Noto Sans,Helvetica,sans-serif;">
+                <h5><span>ALLOCATIONS<hr style="border-top: 1px;"/></span></h5>
+                $<apex:outputText value="{0, number, ###,###,###,###.00}" id="myNumberDisplay2" label="test">
+                <apex:param value="{!creditAmount}"/>
+                </apex:outputText> was allocated for invoice {!invoiceName} &nbsp;
+                <apex:outputText value="{!invoiceDate}"/>
+            </div>
+        </body>
+    </html>
+</apex:page>
